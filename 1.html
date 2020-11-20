@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script>
+    // 倒计时抢购效果
+
+    // 1.定义抢购时间
+    var resultTime = "2020-11-20T20:18:20",
+      resultTime = new Date(resultTime)
+    var resultHms = resultTime.getTime() // 变成毫秒数
+
+    function buyTime(){
+       // 2.现在的时间的毫秒数
+       var currHms = new Date().getTime();
+      // 3.计算时间差
+      var cz = resultHms - currHms;  // 总毫秒数
+      if (cz <= 500) {
+        clearInterval(timer) // 抢购时间到了清除定时器
+        console.log("时间到了");
+      } else {
+        // 4.换算成天，时，分，秒，毫秒
+        var days = parseInt(cz / (24 * 60 * 60 * 1000));
+        var hours = parseInt((cz - 24 * 60 * 60 * 1000 * days) / (60 * 60 * 1000));
+        var minutes = parseInt((cz - 24 * 60 * 60 * 1000 * days - 60 * 60 * 1000 * hours) / (60 * 1000));
+        var ms = parseInt((cz - 24 * 60 * 60 * 1000 * days - hours * 60 * 60 * 1000 - minutes * 60 * 1000) / 1000);
+        var hms = cz - 24 * 60 * 60 * 1000 * days - hours * 60 * 60 * 1000 - minutes * 60 * 1000 - ms * 1000;
+        // console.log(hms);
+         console.log("抢购倒计时：" + days + "天" + hours + "小时" + minutes + "分" + ms + "秒" + hms + "毫秒");
+      }
+    }
+    var timer = setInterval(buyTime, 1000);
+  </script>
+</body>
+
+</html>
